@@ -2,7 +2,7 @@
     const shoppingCart = [];
     let sumCart = 0;
     const modal = document.getElementById("modal");
-    const span = document.getElementsByClassName("closeModal")[0]; //Första elementet i listan sätts
+    const span = document.getElementsByClassName("closeModal")[0]; //Första elementet i listan sätts, kan byta mot id eller query kanske?
 
     let shoppingCartData = document.getElementById("myShoppingCart");
 
@@ -34,17 +34,11 @@
             //från w3 schools:
             modal.style.display = "block";
 
-            //FÖr test att se att knappen funkar:
-            // testVar = testVar + 1;
-            // console.log(testVar);
-
             const modalHead = document.getElementById("modalHead");
             modalHead.innerText = item.type;
-            //console.log(modalHead.innerText);
 
             const modalBody = document.getElementById("modalBody");
             modalBody.innerText = item.description;
-            //console.log(modalBody.innerText)
         }
         
         let addButton = document.createElement("button");
@@ -55,16 +49,16 @@
         addButton.onclick = function (){            
             shoppingCart.unshift(item);
             sumCart += item.price;
-
-            // console.clear();
-
-            // //Bara för test.
-            // shoppingCart.forEach(item => {
-            //     console.log(item.innerText)
-            // });
-
-            //console.log(sumCart);                       
-            shoppingCartData.innerText = `Sum: ${sumCart} €`;            
+                     
+            shoppingCartData.innerText = `Sum: ${sumCart} €`;   
+            
+            if(showCart)
+            {
+                //Borde ha en metod som enbart lägger till en del kanske?
+                //lite fult sätt kan tyckas.
+                document.getElementById("shopList").remove(); 
+                updateShoppingCart();
+            }
         }
 
         li.appendChild(infoButton);
@@ -83,47 +77,47 @@
     //Denna lista visas o släcks som Niklas visade på lektionen. när användaren trycker på shoppingcarten.
     function showShoppingList() {
         showCart = !showCart;
-        
+
         if (showCart) {
-            let shoppinglistdiv = document.getElementById("myShoppingList");
-            let shoppinglist = document.createElement("ol");
-            shoppinglist.id = "shopList";            
-            shoppinglistdiv.appendChild(shoppinglist);
-
-            shoppingCart.forEach(element => {             
-                let shoppingListElement = document.createElement("li");
-        
-                shoppingListElement.innerText = `${element.type}: ${element.price}`;
-        
-                
-                
-                console.log("child element count: " + shoppinglist.childElementCount);
-
-                //lägg till knapp för att ta bort varor från shoppingCart listan.
-                const removeButton = document.createElement("button");
-
-                shoppingListElement.appendChild(removeButton);
-
-                removeButton.innerText = "-";
-
-                removeButton.onclick = function (){
-                    let index = shoppingCart.findIndex(); //Hur hitta indexet?
-                    sumCart -= element.price;
-                    console.log(index);
-                    shoppingCart.splice(index, 1);                    
-                }
-
-                shoppinglist.appendChild(shoppingListElement);  
-
-            });
+            updateShoppingCart();                  
         } else {
-            document.getElementById("shopList").remove();
-            console.log("shoud remove");
+            document.getElementById("shopList").remove();            
         }
     }
 
+    //Uppdatera listan:
+    function updateShoppingCart() {
+        let shoppinglistdiv = document.getElementById("myShoppingList");
+        let shoppinglist = document.createElement("ol");
+        shoppinglist.id = "shopList";           
+        shoppinglistdiv.appendChild(shoppinglist);
 
+        shoppingCart.forEach(item=> {             
+            let shoppingListItems = document.createElement("li");    
+            shoppingListItems.innerText = `${item.type}: ${item.price}`;             
+            
+            //lägg till knapp för att ta bort varor från shoppingCart listan.
+            const removeButton = document.createElement("button");
+            shoppingListItems.appendChild(removeButton);
+            removeButton.innerText = "-";
 
+            removeButton.onclick = function (){                
+                //Måste finnas ett bättre sätt att göra detta:
+                //let index = shoppingCart.findIndex((item));                
+                index = -1;
+                for (let i = 0; i < shoppingCart.length; i++) {
+                    if(shoppingCart[i].type === item.type){
+                        index = i;
+                    }
+                }                    
+                
+                sumCart -= item.price;
+                shoppingCart.splice(index, 1);   
+                console.log("shoud remove");
+                shoppingCartData.innerText = `Sum: ${sumCart} €`;                
+                shoppingListItems.remove(item);            
+            }
 
-
-
+            shoppinglist.appendChild(shoppingListItems); 
+        });
+    }
