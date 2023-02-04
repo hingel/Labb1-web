@@ -1,3 +1,13 @@
+    class coffee
+    {
+        constructor(type, description, price) {
+            this.type = type;
+            this.description = description;
+            this.price = price;
+        }
+    }
+
+
     let testVar = 1;
     const shoppingCart = [];
     let sumCart = 0;
@@ -8,26 +18,36 @@
 
     let showCart = false;
 
+    //Skapa en riktig klass:
     //Arrayen med ingredienser:
-    const singleEspresso = {type:"Single Espresso", description:"One shot of espresso.", price: 2};
-    const cappucino = {type:"Cappucino", description:"One shot of espresso and 4 parts hot foamed milk.", price: 4};
-    const cortado = {type:"cortado", description:"Double shoe of espresso and same amount of hot foamed milk.", price: 3}
+    const singleEspresso = new coffee("Single Espresso", "One shot of espresso.",2);
+    const cappucino = new coffee("Cappucino", "One shot of espresso and 4 parts hot foamed milk.", 4);
+    const cortado = new coffee("Cortado", "Double shot of espresso and same amount of hot foamed milk.", 3);
 
     let data = [singleEspresso, cappucino, cortado];
-
     let list = document.getElementById("myList");
 
+   
+    //Lägga till menyn till html:
     data.forEach((item) => {
         let li = document.createElement("li");
+        li.classList.add("list-group", "list-group-horizontal", "m-1");
 
-        li.innerText = item.type + " Price: " +  item.price.toString(); //Gör om till textimplementation eller vad det heter.
+        //Type texten:
+        let div = document.createElement("div");
+        div.classList.add("list-group-item", "w-100");
+        div.innerText = `${item.type} Price: ${item.price}.`;
+
+        //Bild för kaffet: lägg till bildlänk
+        let img = document.createElement("img");
+        img.src="";
+        img.alt=`Image of: ${item.type}`;
 
         //Knappen
         let infoButton = document.createElement("button");
         infoButton.innerText = "Show info";  
-        infoButton.className = "btn btn-primary";
+        infoButton.classList.add("list-group-item", "list-group-item-action");
         infoButton.id = "myBtn";
-
 
         //Kan göra detta till extern funktion istället:
         infoButton.onclick = function () {            
@@ -43,7 +63,7 @@
         
         let addButton = document.createElement("button");
         addButton.innerText = "Add to cart";
-        addButton.className = "btn btn-primary";
+        addButton.classList.add("list-group-item", "list-group-item-action");//) = "btn btn-primary";
 
         //lägga till köpt detalj
         addButton.onclick = function (){            
@@ -61,8 +81,10 @@
             }
         }
 
-        li.appendChild(infoButton);
-        li.appendChild(addButton);
+        //li.appendChild(div);
+        li.append(div, img, infoButton, addButton);
+        //li.appendChild(infoButton);
+        //li.appendChild(addButton);
         list.appendChild(li);
     });
 
@@ -96,7 +118,7 @@
             let shoppingListItems = document.createElement("li");    
             shoppingListItems.innerText = `${item.type}: ${item.price}`;             
             
-            //lägg till knapp för att ta bort varor från shoppingCart listan.
+            //knapp för att ta bort varor
             const removeButton = document.createElement("button");
             shoppingListItems.appendChild(removeButton);
             removeButton.innerText = "-";
@@ -121,3 +143,5 @@
             shoppinglist.appendChild(shoppingListItems); 
         });
     }
+
+

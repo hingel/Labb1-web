@@ -10,6 +10,7 @@
     integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
     crossorigin="anonymous"></script>    
 
+    <script src="indexApi.js"></script>
     <link rel="stylesheet" href="style.css">
     
     <title>Hingel Labb1-web</title>
@@ -23,7 +24,7 @@
             <div class="collapse navbar-collapse" id="nav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a href="index.html" class="nav-link">Start</a>
+                        <a href="#" class="nav-link active fw-bold">Start</a>
                     </li>
                     <li class="nav-item">
                         <a href="about.html" class="nav-link">About</a>
@@ -37,14 +38,18 @@
     </div>
     <div class="container">
         <h3>Kaffestället</h3>
-        <div class="d-grid">             
-            Här ska innehållet vara för att visa vart besökaren kommit. Välkommen in för lite kaffe.
-
-            Lägg till väder api. skriv: 
+        <div class="d-grid" id="currentWeatherQuote">         
             
-            Oh what a weather! It would be perfect with a cup of coffee.
-            <img src="card-img.png" alt="Picture of Coffee">
         </div>
+    </div>
+
+    <div class="list-group">
+        <li class="list-group list-group-horizontal m-2" >
+            <div class="list-group-item list-group-horizontal w-75">test</div>
+            <button class=" list-group-item-action">test</button>
+            <div class="list-group-item">test</div>
+        </li>
+       
     </div>
     <footer>
         Footer: Info om hemsidan nånting
