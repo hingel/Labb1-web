@@ -1,8 +1,9 @@
     class coffee
     {
-        constructor(type, description, price) {
+        constructor(type, description, picture, price) {
             this.type = type;
             this.description = description;
+            this.picture = picture;
             this.price = price;
         }
     }
@@ -13,36 +14,35 @@
     let sumCart = 0;
     const modal = document.getElementById("modal");
     const span = document.getElementsByClassName("closeModal")[0]; //Första elementet i listan sätts, kan byta mot id eller query kanske?
-
     let shoppingCartData = document.getElementById("myShoppingCart");
-
     let showCart = false;
 
-    //Skapa en riktig klass:
-    //Arrayen med ingredienser:
-    const singleEspresso = new coffee("Single Espresso", "One shot of espresso.",2);
-    const cappucino = new coffee("Cappucino", "One shot of espresso and 4 parts hot foamed milk.", 4);
-    const cortado = new coffee("Cortado", "Double shot of espresso and same amount of hot foamed milk.", 3);
+    //Kaffesorter:
+    const singleEspresso = new coffee("Single Espresso", "One shot of espresso.", "espresso.png", 2);
+    const cappucino = new coffee("Cappucino", "Foamed oat milk, hot oat milk and an espresso.","cappucino.png", 4);
+    const americano = new coffee("Americano", "Double shot of espresso and hot H20.","americano.png", 3);
+    const doppio = new coffee("Doppio", "Double shot of espresso.", "doppio.png", 4);
+    const romano = new coffee("Romano", "Espresso with lemon.", "romano.png", 3);
 
-    let data = [singleEspresso, cappucino, cortado];
+    let data = [singleEspresso, cappucino, americano, doppio, romano];
     let list = document.getElementById("myList");
 
    
     //Lägga till menyn till html:
     data.forEach((item) => {
         let li = document.createElement("li");
-        li.classList.add("list-group", "list-group-horizontal", "m-1");
+        li.classList.add("list-group", "list-group-horizontal", "m-1", "border", "border-1");
 
         //Type texten:
         let div = document.createElement("div");
         div.classList.add("list-group-item", "w-100");
-        div.innerText = `${item.type} Price: ${item.price}.`;
+        div.innerText = `${item.type}`;
 
         //Bild för kaffet: lägg till bildlänk
         let img = document.createElement("img");
-        img.src="";
+        img.src=item.picture;
         img.alt=`Image of: ${item.type}`;
-
+                
         //Knappen
         let infoButton = document.createElement("button");
         infoButton.innerText = "Show info";  
@@ -62,8 +62,8 @@
         }
         
         let addButton = document.createElement("button");
-        addButton.innerText = "Add to cart";
-        addButton.classList.add("list-group-item", "list-group-item-action");//) = "btn btn-primary";
+        addButton.innerText = `Add to cart: ${item.price} €`;
+        addButton.classList.add("list-group-item", "list-group-item-action");
 
         //lägga till köpt detalj
         addButton.onclick = function (){            
