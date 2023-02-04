@@ -17,8 +17,9 @@
 
 </head>
 <body>
+    <div id="graphic-bg"></div>
     <div class="navbar navbar-expand-md" id="navbar-topp">
-        <div class="container border-start border-5 border-secondary p-2">
+        <div class="container-fluid border-start border-5 border-secondary p-2">
             <h4>
                 Välkommen till Kaffestället
             </h4>
@@ -36,33 +37,27 @@
                     <li class="nav-item active fw-bold">
                         <a href="#" class="nav-link">Coffee</a>
                     </li>
-                    <li class="nav-item nav-link fw-bold border-start border-secondary"
+                    <li class="nav-item fw-bold border-start border-secondary ps-2"
                     id="myShoppingCart" onclick="showShoppingList()">
                         Sum: 0 €
                     </li>
                 </ul>
             </div>
         </div>
+
         <!--Listan med kundvagnen-->
-        <div class="container" id="myShoppingList">
-        
-        </div>
+        <div class="container" id="myShoppingList"></div>
     </div>
 
     <div class="container">
-        
-        <!--  Knapp för test-->
-        <!-- <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal">Open</button> -->
-
         <div class="modal" id="modal">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 id="modalHead"></h4>
-                        <span class="closeModal">&times;</span>
+                        <span class="closeModal fw-bold">X</span>
                     </div>
                     <div class="modal-body" id="modalBody"></div>
-                    <!-- <div class="modal-footer">footer</div> -->
                 </div>
             </div>
         </div>
@@ -74,17 +69,11 @@
         </ol>      
     </div>
 
+    <footer class="container" id="footer" >
 
+            Kaffestället, Kvillepiren
 
-    <!--Något med bootstrap som inte fungerar:-->
-    <!-- <script>
-        $(document).ready(function(){
-          $("#myBtn").click(function(){
-            $("#modal").modal();
-          });
-        });
-    </script> -->
-
+    </footer>
     
 </body>
 </html>

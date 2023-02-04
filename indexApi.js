@@ -1,11 +1,5 @@
-//detta borde ligga i någon await funktion för att det ska laddas upp korrekt kanske?
-
 //uncomment:
-//loadApi();
-
-//Delete following:
-const weatherDiv = document.getElementById("currentWeatherQuote");
-weatherDiv.innerText = "I couldn't read you local weather but it is always perfect time for a cup of coffee."
+loadApi();
 
 const date = new Date();
 let currentHour = date.getHours(date.getTime);
@@ -28,7 +22,7 @@ async function loadApi() {
 
         weatherDiv.innerText = `Oh, it is ${jsonresponce.hourly.temperature_2m[currentHour]} degress Celcius outside.
 
-        It is a lovely weather for a cup of hot coffee!`
+        It is a lovely weather for a hot cup of coffee!`
     }
     else{
         const weatherDiv = document.getElementById("currentWeatherQuote");

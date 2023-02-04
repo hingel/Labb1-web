@@ -10,14 +10,15 @@
     integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
     crossorigin="anonymous"></script>    
 
-    <script src="indexApi.js"></script>
+    <script defer src="indexApi.js"></script>
     <link rel="stylesheet" href="style.css">
     
     <title>Hingel Labb1-web</title>
 </head>
 <body>
+    <div id="graphic-bg"></div>
     <div class="navbar navbar-expand-md" id="navbar-topp">
-        <div class="container border-start border-5 border-dark p-2">
+        <div class="container-fluid border-start border-5 border-secondary p-2">
             <h4>
                 Välkommen till Kaffestället
             </h4>
@@ -39,17 +40,21 @@
             </div>
         </div>
     </div>
-    <div class="container">
-        <h3>Kaffestället</h3>
-        <div class="d-grid" id="currentWeatherQuote">         
-            
-        </div>
+    <div class="container pt-2">
+        <div class="d-grid" id="currentWeatherQuote"></div>
     </div>
-
-    <img src="americano.png" height=auto>
-
-    <footer>
-        Footer: Info om hemsidan nånting
+    <div class="container ps-0 ms-3 mt-3">
+        <img src="romano.png" height=auto>
+        <img src="cappucino.png" height=auto>
+        <img src="doppio.png" height=auto>
+        <img src="americano.png" height=auto>
+        <img src="espresso.png" height=auto>
+    </div>
+        
+    <footer class="container" id="footer">
+        <div>
+            Kaffestället, Kvillepiren
+        </div> 
     </footer>
 </body>
 </html>

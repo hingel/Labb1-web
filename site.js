@@ -32,10 +32,11 @@
     data.forEach((item) => {
         let li = document.createElement("li");
         li.classList.add("list-group", "list-group-horizontal", "m-1", "border", "border-1");
+        li.id="coffe-list";
 
         //Type texten:
         let div = document.createElement("div");
-        div.classList.add("list-group-item", "w-100");
+        div.classList.add("list-group-item", "w-75");
         div.innerText = `${item.type}`;
 
         //Bild för kaffet: lägg till bildlänk
@@ -46,7 +47,7 @@
         //Knappen
         let infoButton = document.createElement("button");
         infoButton.innerText = "Show info";  
-        infoButton.classList.add("list-group-item", "list-group-item-action");
+        infoButton.classList.add("list-group-item", "list-group-item-action", "w-25");
         infoButton.id = "myBtn";
 
         //Kan göra detta till extern funktion istället:
@@ -81,10 +82,7 @@
             }
         }
 
-        //li.appendChild(div);
         li.append(div, img, infoButton, addButton);
-        //li.appendChild(infoButton);
-        //li.appendChild(addButton);
         list.appendChild(li);
     });
 
@@ -120,8 +118,9 @@
             
             //knapp för att ta bort varor
             const removeButton = document.createElement("button");
+            removeButton.classList.add("m-1");
+            removeButton.innerText = "Remove item";
             shoppingListItems.appendChild(removeButton);
-            removeButton.innerText = "-";
 
             removeButton.onclick = function (){                
                 //Måste finnas ett bättre sätt att göra detta:

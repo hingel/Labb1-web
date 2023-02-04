@@ -30,9 +30,25 @@ img {
 }
 
 h4{
-  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: 'Consolas';
 }
 
-/* li {
-  background-color: #FAE08C ;
-} */
+#graphic-bg{
+  position: absolute;
+    width: 40%;
+    background-color:#241b04   ;
+    z-index: -1;
+    border-radius: 50%;
+    left: 33%;
+    top: 20%;
+    height: 40%;
+}
+
+#footer{
+  position: fixed;
+  bottom: 0;
+  background-color: #78BFFA;
+  width: 150%;
+  margin-left: 0;
+  margin-right: 0;
+}
