@@ -52,3 +52,7 @@ h4{
   margin-left: 0;
   margin-right: 0;
 }
+
+#myShoppingCart:hover{
+  background-color: #78BFFA;
+}

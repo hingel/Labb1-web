@@ -8,6 +8,15 @@
         }
     }
 
+    class coffeQty
+    {
+        constructor(coffeeType, qty)
+        {
+            this.coffeeType = coffeeType;
+            this.qty = qty;
+        }
+    }
+
 
     let testVar = 1;
     const shoppingCart = [];
@@ -68,9 +77,9 @@
 
         //lägga till köpt detalj
         addButton.onclick = function (){            
-            shoppingCart.unshift(item);
-            sumCart += item.price;
-                     
+            //check if exists.
+            addCoffeObject(item);
+            sumCart += item.price;                     
             shoppingCartData.innerText = `Sum: ${sumCart} €`;   
             
             if(showCart)
@@ -86,9 +95,24 @@
         list.appendChild(li);
     });
 
-    // var modal = document.getElementById("modal");
+    //Kolla om det ska läggas till nya object eller öka antalet.
+    function addCoffeObject(item) {
+        var addnewCoffeObj = true;
 
-    // var span = document.getElementsByClassName("close")[0];
+        for (const coffeObj of shoppingCart) {            
+            if(item === coffeObj.coffeeType)
+            {
+                coffeObj.qty += 1;
+                addnewCoffeObj = false;
+            }
+        }
+
+        if (addnewCoffeObj === true){
+            shoppingCart.unshift(new coffeQty(item, 1))
+        }        
+    }
+
+
 
     span.onclick = function() {
         modal.style.display = "none";
@@ -105,7 +129,6 @@
         }
     }
 
-    //Uppdatera listan:
     function updateShoppingCart() {
         let shoppinglistdiv = document.getElementById("myShoppingList");
         let shoppinglist = document.createElement("ol");
@@ -114,7 +137,7 @@
 
         shoppingCart.forEach(item=> {             
             let shoppingListItems = document.createElement("li");    
-            shoppingListItems.innerText = `${item.type}: ${item.price}`;             
+            shoppingListItems.innerText = `${item.coffeeType.type}: Qty: ${item.qty}. Sum: ${item.coffeeType.price * item.qty}`;             
             
             //knapp för att ta bort varor
             const removeButton = document.createElement("button");
@@ -130,13 +153,12 @@
                     if(shoppingCart[i].type === item.type){
                         index = i;
                     }
-                }                    
-                
-                sumCart -= item.price;
-                shoppingCart.splice(index, 1);   
-                console.log("shoud remove");
-                shoppingCartData.innerText = `Sum: ${sumCart} €`;                
-                shoppingListItems.remove(item);            
+                }                 
+                                               
+                sumCart -= item.coffeeType.price * item.qty;    
+                shoppingCart.splice(index, 1);                                    
+                shoppingListItems.remove(item);
+                shoppingCartData.innerText = `Sum: ${sumCart} €`;  
             }
 
             shoppinglist.appendChild(shoppingListItems); 

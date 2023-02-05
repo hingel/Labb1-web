@@ -20,7 +20,7 @@ async function loadApi() {
 
         //Kan lägga detta i variabler och modifiera utfallet beroende på temperatur.
 
-        weatherDiv.innerText = `Oh, it is ${jsonresponce.hourly.temperature_2m[currentHour]} degress Celcius outside.
+        weatherDiv.innerText = `Oh, it is ${jsonresponce.hourly.temperature_2m[currentHour]} degrees Celcius outside.
 
         It is a lovely weather for a hot cup of coffee!`
     }
