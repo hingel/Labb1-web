@@ -37,9 +37,12 @@
                     <li class="nav-item active fw-bold">
                         <a href="#" class="nav-link">Coffee</a>
                     </li>
-                    <li class="nav-item fw-bold border border-secondary p-1"
-                    id="myShoppingCart" onclick="showShoppingList()">
-                        Sum: 0 €
+                    <li class="nav-item fw-bold border border-secondary p-1" onclick=showShoppingList() id="shopCart">
+                        Expand cart:
+                        <div                          
+                        id="myShoppingCart">
+                            Sum: 0 €
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -55,7 +58,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 id="modalHead"></h4>
-                        <span class="closeModal fw-bold">X</span>
+                        <span class="closeModal" id="modalClose">X</span>
                     </div>
                     <div class="modal-body" id="modalBody"></div>
                 </div>

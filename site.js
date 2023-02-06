@@ -22,9 +22,23 @@
     const shoppingCart = [];
     let sumCart = 0;
     const modal = document.getElementById("modal");
-    const span = document.getElementsByClassName("closeModal")[0]; //Första elementet i listan sätts, kan byta mot id eller query kanske?
+    const span = document.getElementsByClassName("closeModal")[0]; //Första elementet i listan, finns bara ett element.
     let shoppingCartData = document.getElementById("myShoppingCart");
     let showCart = false;
+
+
+    //Stänga modalen på knapp:
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    //Stänga modalen:
+    window.onclick = function(event) {
+        if(event.target == modal){
+            modal.style.display = "none";
+        }
+    }
+
 
     //Kaffesorter:
     const singleEspresso = new coffee("Single Espresso", "One shot of espresso.", "espresso.png", 2);
@@ -36,8 +50,8 @@
     let data = [singleEspresso, cappucino, americano, doppio, romano];
     let list = document.getElementById("myList");
 
-   
-    //Lägga till menyn till html:
+    
+    //Lägga till kaffemenyn till html-lista:
     data.forEach((item) => {
         let li = document.createElement("li");
         li.classList.add("list-group", "list-group-horizontal", "m-1", "border", "border-1");
@@ -114,10 +128,6 @@
 
 
 
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-
     //Denna lista visas o släcks som Niklas visade på lektionen. när användaren trycker på shoppingcarten.
     function showShoppingList() {
         showCart = !showCart;
@@ -128,6 +138,7 @@
             document.getElementById("shopList").remove();            
         }
     }
+
 
     function updateShoppingCart() {
         let shoppinglistdiv = document.getElementById("myShoppingList");

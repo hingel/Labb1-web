@@ -6,17 +6,17 @@ body{
     background-color: #FAE08C;
 }
 
-/* The Close Button, från w3 schools*/
-.close {
+/* Stängknapp från w3schools*/
+#modalClose {
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
 }
   
-.close:hover,
-.close:focus {
-  color: black;
+#modalClose:hover,
+#modalClose:focus {
+  color: rgb(233, 59, 59);
   text-decoration: none;
   cursor: pointer;
 }
@@ -53,6 +53,6 @@ h4{
   margin-right: 0;
 }
 
-#myShoppingCart:hover{
+#shopCart:hover{
   background-color: #78BFFA;
 }
