@@ -28,12 +28,12 @@
 
 
     //Stänga modalen på knapp:
-    span.onclick = function() {
+    span.onclick = () => {
         modal.style.display = "none";
     }
 
-    //Stänga modalen:
-    window.onclick = function(event) {
+    //Stänga modalen vid tryck utanför modalruta:
+    window.onclick = (event) => {
         if(event.target == modal){
             modal.style.display = "none";
         }
@@ -51,7 +51,7 @@
     let list = document.getElementById("myList");
 
     
-    //Lägga till kaffemenyn till html-lista:
+    //Göra kaffemeny till html-lista:
     data.forEach((item) => {
         let li = document.createElement("li");
         li.classList.add("list-group", "list-group-horizontal", "m-1", "border", "border-1");
@@ -73,8 +73,7 @@
         infoButton.classList.add("list-group-item", "list-group-item-action", "w-25");
         infoButton.id = "myBtn";
 
-        //Kan göra detta till extern funktion istället:
-        infoButton.onclick = function () {            
+        infoButton.onclick = () => {            
             //från w3 schools:
             modal.style.display = "block";
 
@@ -90,16 +89,13 @@
         addButton.classList.add("list-group-item", "list-group-item-action");
 
         //lägga till köpt detalj
-        addButton.onclick = function (){            
-            //check if exists.
+        addButton.onclick = () => {            
             addCoffeObject(item);
             sumCart += item.price;                     
             shoppingCartData.innerText = `Sum: ${sumCart} €`;   
             
             if(showCart)
             {
-                //Borde ha en metod som enbart lägger till en del kanske?
-                //lite fult sätt kan tyckas.
                 document.getElementById("shopList").remove(); 
                 updateShoppingCart();
             }
@@ -109,7 +105,8 @@
         list.appendChild(li);
     });
 
-    //Kolla om det ska läggas till nya object eller öka antalet.
+
+    //Kollar om det ska läggas till nya object eller öka antalet.
     function addCoffeObject(item) {
         var addnewCoffeObj = true;
 
@@ -128,7 +125,7 @@
 
 
 
-    //Denna lista visas o släcks som Niklas visade på lektionen. när användaren trycker på shoppingcarten.
+    //Visa eller göm shoppingcart
     function showShoppingList() {
         showCart = !showCart;
 
@@ -139,7 +136,7 @@
         }
     }
 
-
+    //Uppdatera shoppingvagn
     function updateShoppingCart() {
         let shoppinglistdiv = document.getElementById("myShoppingList");
         let shoppinglist = document.createElement("ol");
@@ -147,16 +144,16 @@
         shoppinglistdiv.appendChild(shoppinglist);
 
         shoppingCart.forEach(item=> {             
-            let shoppingListItems = document.createElement("li");    
-            shoppingListItems.innerText = `${item.coffeeType.type}: Qty: ${item.qty}. Sum: ${item.coffeeType.price * item.qty}`;             
+            let shoppingListItem = document.createElement("li");    
+            shoppingListItem.innerText = `${item.coffeeType.type}: Qty: ${item.qty}. Sum: ${item.coffeeType.price * item.qty}`;             
             
             //knapp för att ta bort varor
             const removeButton = document.createElement("button");
             removeButton.classList.add("m-1");
             removeButton.innerText = "Remove item";
-            shoppingListItems.appendChild(removeButton);
+            shoppingListItem.appendChild(removeButton);
 
-            removeButton.onclick = function (){                
+            removeButton.onclick = () => {                
                 //Måste finnas ett bättre sätt att göra detta:
                 //let index = shoppingCart.findIndex((item));                
                 index = -1;
@@ -168,12 +165,27 @@
                                                
                 sumCart -= item.coffeeType.price * item.qty;    
                 shoppingCart.splice(index, 1);                                    
-                shoppingListItems.remove(item);
+                shoppingListItem.remove(item);
                 shoppingCartData.innerText = `Sum: ${sumCart} €`;  
             }
 
-            shoppinglist.appendChild(shoppingListItems); 
+            shoppinglist.appendChild(shoppingListItem); 
         });
+
+        const checkOutButton = document.createElement("button");
+        checkOutButton.classList.add("m-1");
+        checkOutButton.innerText = "Check out";
+        
+        checkOutButton.onclick = () => {
+            shoppingCart.length = 0; //Tömma arrayen
+            sumCart = 0;
+            shoppingCartData.innerText = `Sum: ${sumCart} €`; 
+            showShoppingList();
+        }
+        
+        shoppinglist.appendChild(checkOutButton);
+
+
     }
 
 
