@@ -11,6 +11,7 @@ async function loadApi() {
         const jsonresponce = await response.json();
 
         const weatherDiv = document.getElementById("currentWeatherQuote");
+        weatherDiv.classList.add("text-light");
 
         weatherDiv.innerText = `Oh, it is ${jsonresponce.hourly.temperature_2m[currentHour]} degrees Celcius outside.
 
