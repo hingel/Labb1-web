@@ -124,7 +124,6 @@
     }
 
 
-
     //Visa eller göm shoppingcart
     function showShoppingList() {
         showCart = !showCart;
@@ -154,8 +153,7 @@
             shoppingListItem.appendChild(removeButton);
 
             removeButton.onclick = () => {                
-                //Måste finnas ett bättre sätt att göra detta:
-                //let index = shoppingCart.findIndex((item));                
+                //Måste finnas ett bättre sätt att göra detta:              
                 index = -1;
                 for (let i = 0; i < shoppingCart.length; i++) {
                     if(shoppingCart[i].type === item.type){
